@@ -1,0 +1,13 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+pipeline:
+  script:
+    - npm install --unsafe-perm
+    - npm start
+  artifacts:
+    paths:
+      - output/transformed.nt
