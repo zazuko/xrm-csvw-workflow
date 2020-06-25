@@ -10,4 +10,5 @@ node -r esm ./node_modules/.bin/barnard59 \
   run \
   --format text/turtle \
   "${variables[@]}" \
+  "$@" \
   --pipeline urn:pipeline:xrm#Main pipelines/main.ttl

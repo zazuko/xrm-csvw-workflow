@@ -33,3 +33,15 @@ Parameters can be changed locally by creating a `.env` file in the repo root wit
 ```
 MAPPINGS=src-gen/subset*.json
 ```
+
+Diagnostic output it possible by running the command with a verbose switch
+
+```
+npm run start -- -v
+```
+
+or
+
+```
+yarn start -v
+```

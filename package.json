@@ -4,7 +4,7 @@
   "private": true,
   "description": "Barnard pipeline with sensible defaults",
   "scripts": {
-    "start": "dotenv ./start.sh"
+    "start": "dotenv ./start.sh --"
   },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^0.2.2",
