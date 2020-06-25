@@ -1,0 +1,125 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"url": "../input/Synthetic-Testuser.csv",
+	"dialect": {
+		"delimiter": ","
+		,"quoteChar": "\""
+	},
+	"tableSchema": {
+		"aboutUrl": "http://example.com/User/{customerID}",
+		"columns": [
+			{
+				"virtual": true,
+				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+				"valueUrl": "http://schema.org/Person"
+			}
+			,
+			{
+				"propertyUrl": "http://schema.org/identifier",
+				"titles": "customerID"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#influenceScore",
+				"titles": "influenceScore"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#networkScore",
+				"titles": "networkScore"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#npsScore",
+				"titles": "NPSScore"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#customerLtv",
+				"titles": "customerLTV"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#sentimentScore",
+				"titles": "sentimentScore"
+			},
+			{
+				"propertyUrl": "http://example.com/vocab#propensityScore",
+				"titles": "propensityScore"
+			},
+			{
+				"propertyUrl": "http://schema.org/givenName",
+				"titles": "Nr."
+			},
+			{
+				"propertyUrl": "http://schema.org/familyName",
+				"titles": "Last name"
+			},
+			{
+				"propertyUrl": "http://schema.org/birthDate",
+				"titles": "dob"
+			},
+			{
+				"propertyUrl": "http://schema.org/addressLocality",
+				"titles": "City"
+			},
+			{
+				"propertyUrl": "http://schema.org/postalCode",
+				"titles": "Postal Code"
+			},
+			{
+				"propertyUrl": "http://schema.org/streetAddress",
+				"titles": "Street"
+			},
+			{
+				"propertyUrl": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+				"titles": "WikidataID",
+				"valueUrl": "http://www.wikidata.org/entity/{WikidataID}"
+			},
+			{
+				"propertyUrl": "http://schema.org/telephone",
+				"titles": "TelephoneNumber"
+			},
+			{
+				"propertyUrl": "http://schema.org/telephone",
+				"titles": "CellphoneNumber"
+			},
+			{
+				"propertyUrl": "http://schema.org/email",
+				"titles": "E-Mail"
+			}
+			,
+			{
+				"suppressOutput": true,
+				"titles": "Salutation"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "thumbnail"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Title"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Name"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Fullname"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "WikidataID"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "WikidataPlace"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Telefax"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Newsletter"
+			}
+		] 
+	}
+}

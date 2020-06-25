@@ -1,0 +1,40 @@
+vocabulary ex {
+    prefix "ex" "http://example.com/"
+}
+
+vocabulary vocab {
+    prefix "vocab" "http://example.com/vocab#"
+
+    properties
+        influenceScore
+        networkScore
+        npsScore
+        customerLtv
+        sentimentScore
+        propensityScore
+}
+
+vocabulary schema {
+    prefix "schema" "http://schema.org/"
+
+    classes
+        Person
+
+    properties
+        identifier
+        givenName
+        familyName
+        birthDate
+        streetAddress
+        postalCode
+        addressLocality
+        telephone
+        email
+}
+
+vocabulary rdfs {
+    prefix "rdfs" "http://www.w3.org/2000/01/rdf-schema#"
+
+    properties
+        seeAlso
+}

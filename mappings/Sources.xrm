@@ -1,0 +1,37 @@
+dialect Comma {
+    delimiter ","
+    quoteChar '\\"'
+}
+
+logical-source Testuser {
+    type csv
+    source "../input/Synthetic-Testuser.csv"
+    dialect Comma
+    
+    referenceables
+        name "Nr."
+        customerID
+        influenceScore
+        networkScore
+        NPSScore
+        customerLTV
+        sentimentScore
+        propensityScore
+        Salutation
+        thumbnail
+        Title
+        Name
+        Fullname
+        lastname "Last name"
+        dob
+        Street
+        postalCode "Postal Code"
+        City
+        WikidataID
+        WikidataPlace
+        TelephoneNumber
+        CellphoneNumber
+        Telefax
+        email "E-Mail"
+        Newsletter
+}

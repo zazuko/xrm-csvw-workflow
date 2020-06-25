@@ -1,0 +1,26 @@
+output csvw
+
+map User from Testuser {
+    subject template "http://example.com/User/{0}" with customerID;
+
+    types schema.Person
+
+    properties
+        schema.identifier from customerID;
+        vocab.influenceScore from influenceScore;
+        vocab.networkScore from networkScore;
+        vocab.npsScore from NPSScore;
+        vocab.customerLtv from customerLTV;
+        vocab.sentimentScore from sentimentScore;
+        vocab.propensityScore from propensityScore;
+        schema.givenName from name;
+        schema.familyName from lastname;
+        schema.birthDate from dob;
+        schema.addressLocality from City;
+        schema.postalCode from postalCode;
+        schema.streetAddress from Street;
+        rdfs.seeAlso template "http://www.wikidata.org/entity/{0}" with WikidataID;
+        schema.telephone from TelephoneNumber;
+        schema.telephone from CellphoneNumber;
+        schema.email from email;
+}
