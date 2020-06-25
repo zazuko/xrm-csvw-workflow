@@ -1,11 +1,10 @@
 {
-  "name": "bar-pipeline",
+  "name": "xrm-pipeline",
   "version": "0.0.0",
+  "private": true,
   "description": "Barnard pipeline with sensible defaults",
-  "main": "index.js",
   "scripts": {
-    "postinstall": "mkdirp input output mappings",
-    "start": "dotenv -e .env.defaults -e .env ./start.sh"
+    "start": "dotenv ./start.sh"
   },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^0.2.2",

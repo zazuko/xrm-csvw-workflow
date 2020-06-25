@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+
+variables=()
+
+[[ -n "$INPUT_DIR" ]] && variables+=(--variable="inputDir=$INPUT_DIR")
+[[ -n "$OUTPUT" ]] && variables+=(--variable="targetFile=$OUTPUT")
+[[ -n "$MAPPINGS" ]] && variables+=(--variable="mappings=$MAPPINGS")
 
 node -r esm ./node_modules/.bin/barnard59 \
-  run -v \
+  run \
   --format text/turtle \
-  --variable="inputDir=$INPUT_DIR" \
-  --variable="targetFile=$OUTPUT" \
-  --variable="mappingsDir=$MAPPINGS_DIR" \
-  --pipeline=urn:pipeline:bar#Main pipelines/main.ttl
+  "${variables[@]}" \
+  --pipeline urn:pipeline:xrm#Main pipelines/main.ttl

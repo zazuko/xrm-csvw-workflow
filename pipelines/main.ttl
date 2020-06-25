@@ -1,11 +1,18 @@
-@base         <urn:pipeline:bar> .
+@base         <urn:pipeline:xrm> .
 @prefix :     <https://pipeline.described.at/> .
 @prefix code: <https://code.described.at/> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
+_:variables :variable
+    [ a :Variable; :name "mappings"; :value "src-gen/*.json" ] ,
+    [ a :Variable; :name "inputDir"; :value "input" ] ,
+    [ a :Variable; :name "targetFile"; :value "output/transformed.nt" ]
+.
+
 <#Main>
     a      :Pipeline ;
-    :steps [ :stepList ( <#mergeInputs> <#streamOutputStep> ) ] .
+    :steps [ :stepList ( <#mergeInputs> <#streamOutputStep> ) ] ;
+    :variables _:variables .
 
 <#mergeInputs>
     a                  :Step ;
@@ -53,7 +60,7 @@ _:save
     code:implementedBy [ code:link <node:barnard59-base#glob> ;
                          a         code:EcmaScript ] ;
     code:arguments     [ code:name  "pattern" ;
-                         code:value "mappingsDir"^^:VariableName ] .
+                         code:value "mappings"^^:VariableName ] .
 
 <#doTransform>
     a                  :Step ;
