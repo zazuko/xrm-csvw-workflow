@@ -16,10 +16,7 @@ map User from Testuser {
         schema.givenName from name;
         schema.familyName from lastname;
         schema.birthDate from dob;
-        schema.addressLocality from City;
-        schema.postalCode from postalCode;
-        schema.streetAddress from Street;
-        rdfs.seeAlso template "http://www.wikidata.org/entity/{0}" with WikidataID;
+        schema.address template "http://example.com/User/{0}#address" with customerID;
         schema.telephone from TelephoneNumber;
         schema.telephone from CellphoneNumber;
         schema.email from email;

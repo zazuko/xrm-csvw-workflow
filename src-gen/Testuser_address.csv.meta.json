@@ -1,0 +1,125 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"url": "../input/Synthetic-Testuser.csv",
+	"dialect": {
+		"delimiter": ","
+		,"quoteChar": "\""
+	},
+	"tableSchema": {
+		"aboutUrl": "http://example.com/User/{customerID}#address",
+		"columns": [
+			{
+				"virtual": true,
+				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+				"valueUrl": "http://schema.org/PostalAddress"
+			}
+			,
+			{
+				"propertyUrl": "http://schema.org/addressLocality",
+				"titles": "City"
+			},
+			{
+				"propertyUrl": "http://schema.org/postalCode",
+				"titles": "Postal Code"
+			},
+			{
+				"propertyUrl": "http://schema.org/streetAddress",
+				"titles": "Street"
+			},
+			{
+				"propertyUrl": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+				"titles": "WikidataID",
+				"valueUrl": "http://www.wikidata.org/entity/{WikidataID}"
+			}
+			,
+			{
+				"suppressOutput": true,
+				"titles": "Nr."
+			},
+			{
+				"suppressOutput": true,
+				"titles": "customerID"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "influenceScore"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "networkScore"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "NPSScore"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "customerLTV"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "sentimentScore"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "propensityScore"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Salutation"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "thumbnail"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Title"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Name"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Fullname"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Last name"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "dob"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "WikidataID"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "WikidataPlace"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "TelephoneNumber"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "CellphoneNumber"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Telefax"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "E-Mail"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Newsletter"
+			}
+		] 
+	}
+}

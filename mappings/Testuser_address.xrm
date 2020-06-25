@@ -1,0 +1,13 @@
+output csvw
+
+map UserAddress from Testuser {
+    subject template "http://example.com/User/{0}#address" with customerID;
+
+    types schema.PostalAddress
+
+    properties
+        schema.addressLocality from City;
+        schema.postalCode from postalCode;
+        schema.streetAddress from Street;
+        rdfs.seeAlso template "http://www.wikidata.org/entity/{0}" with WikidataID;
+}

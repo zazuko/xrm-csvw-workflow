@@ -55,21 +55,9 @@
 				"titles": "dob"
 			},
 			{
-				"propertyUrl": "http://schema.org/addressLocality",
-				"titles": "City"
-			},
-			{
-				"propertyUrl": "http://schema.org/postalCode",
-				"titles": "Postal Code"
-			},
-			{
-				"propertyUrl": "http://schema.org/streetAddress",
-				"titles": "Street"
-			},
-			{
-				"propertyUrl": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
-				"titles": "WikidataID",
-				"valueUrl": "http://www.wikidata.org/entity/{WikidataID}"
+				"propertyUrl": "http://schema.org/address",
+				"titles": "customerID",
+				"valueUrl": "http://example.com/User/{customerID}#address"
 			},
 			{
 				"propertyUrl": "http://schema.org/telephone",
@@ -103,6 +91,18 @@
 			{
 				"suppressOutput": true,
 				"titles": "Fullname"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Street"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "Postal Code"
+			},
+			{
+				"suppressOutput": true,
+				"titles": "City"
 			},
 			{
 				"suppressOutput": true,

@@ -18,9 +18,11 @@ vocabulary schema {
     prefix "schema" "http://schema.org/"
 
     classes
+        PostalAddress
         Person
 
     properties
+        address
         identifier
         givenName
         familyName
