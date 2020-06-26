@@ -4,7 +4,7 @@ Use this repo as template to set up a project-specific pipeline which transform 
 
 ## Set up
 
-The `mappings` directory contains an example XRM mappings which define how the input CSV files get transformed to RDF. See the [expressive-rdf-mapper](https://github.com/zazuko/expressive-rdf-mapper) project for editing instructions.
+The `mappings` directory contains an example XRM mappings which define how the input CSV files get transformed to RDF. See our [product page](https://zazuko.com/products/expressive-rdf-mapper/) and the [documentation](https://github.com/zazuko/expressive-rdf-mapper) for editing instructions.
 
 The `input` directory contains said CSV file.
 
