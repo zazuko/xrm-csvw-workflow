@@ -6,7 +6,7 @@ variables=()
 [[ -n "$OUTPUT" ]] && variables+=(--variable="targetFile=$OUTPUT")
 [[ -n "$MAPPINGS" ]] && variables+=(--variable="mappings=$MAPPINGS")
 
-node -r esm ./node_modules/.bin/barnard59 \
+node ./node_modules/.bin/barnard59 \
   run \
   --format text/turtle \
   "${variables[@]}" \
