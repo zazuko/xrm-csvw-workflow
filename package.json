@@ -6,7 +6,7 @@
   "description": "Barnard pipeline with sensible defaults",
   "scripts": {
     "postinstall": "mkdirp output",
-    "start": "dotenv ./start.sh --"
+    "start": "dotenv -c local ./start.sh --"
   },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^1.0.0",
