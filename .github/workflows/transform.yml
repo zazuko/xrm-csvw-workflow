@@ -8,6 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - run: mkdir -p output
       - run: npm install
       - run: npm start -- -v
       - uses: actions/upload-artifact@v2
