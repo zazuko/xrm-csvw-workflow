@@ -15,7 +15,7 @@ The default pipeline can be run with `npm start` or `npm run to-file`. It will:
 
 - Read the CSVW input files
 - Convert it to RDF
-- Write it into a file as N-Triples (default: `output/transformed`, make sure you create the directory before you run it)
+- Write it into a file as N-Triples (default: `output/transformed`)
 
 There are additional pipelines configured in `package.json`:
 
