@@ -1,17 +1,18 @@
 {
   "name": "xrm-csvw-workflow",
   "version": "1.0.0",
-  "description": "",
+  "description": "Barnard59 pipeline with sensible defaults",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "fetch": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl --variable=SSH_HOST --variable=SSH_PORT --variable=SSH_USER --variable=SSH_PRIVATE_KEY",
-    "fetch-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl",
+    "start": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
+    "to-file": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
     "file-to-store": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl --variable=ENDPOINT_URL --variable=ENDPOINT_USER --variable=ENDPOINT_PASSWORD",
     "file-to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl",
-    "test": "stricter-standard",
-    "to-file": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
-    "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl"
+    "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl",
+    "fetch": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl --variable=SSH_HOST --variable=SSH_PORT --variable=SSH_USER --variable=SSH_PRIVATE_KEY",
+    "fetch-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl",
+    "test": "stricter-standard"
   },
   "author": "Zazuko",
   "license": "MIT",
