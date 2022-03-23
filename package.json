@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
-    "to-file": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
+    "start": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
+    "to-file": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
     "file-to-store": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl --variable=ENDPOINT_URL --variable=ENDPOINT_USER --variable=ENDPOINT_PASSWORD",
     "file-to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl",
     "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl",
