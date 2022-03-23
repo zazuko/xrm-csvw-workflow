@@ -1,27 +1,33 @@
 {
-  "name": "xrm-pipeline",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Barnard pipeline with sensible defaults",
+  "name": "xrm-csvw-workflow",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "postinstall": "mkdirp output",
-    "start": "dotenv ./start.sh --"
+    "fetch": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl --variable=SSH_HOST --variable=SSH_PORT --variable=SSH_USER --variable=SSH_PRIVATE_KEY",
+    "fetch-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl",
+    "file-to-store": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl --variable=ENDPOINT_URL --variable=ENDPOINT_USER --variable=ENDPOINT_PASSWORD",
+    "file-to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl",
+    "test": "stricter-standard",
+    "to-file": "barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
+    "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl"
   },
+  "author": "Zazuko",
+  "license": "MIT",
+  "bugs": {},
   "dependencies": {
-    "@tpluscode/rdf-ns-builders": "^0.4.0",
-    "barnard59": "^0.1.2",
-    "barnard59-base": "^0.1.1",
-    "barnard59-formats": "^0.1.1",
-    "barnard59-graph-store": "^0.1.0",
-    "dotenv": "^10.0.0",
-    "dotenv-cli": "^4.0.0",
-    "rdf-ext": "^1.3.5",
-    "readable-stream": "^3.6.0"
+    "barnard59": "^1.1.1",
+    "barnard59-csvw": "^1.0.0",
+    "barnard59-formats": "^1.2.0",
+    "barnard59-ftp": "^1.0.1",
+    "barnard59-graph-store": "^1.0.1",
+    "barnard59-rdf": "^1.1.1",
+    "jsonld": "^4.0.1",
+    "rdf-ext": "^2.0.1",
+    "rdf-stream-to-dataset-stream": "^1.0.0"
   },
   "devDependencies": {
-    "mkdirp": "^1.0.4",
-    "standard": "^16.0.3"
-  },
-  "author": "Zazuko GmbH",
-  "license": "MIT"
+    "stricter-standard": "^0.2.0"
+  }
 }
