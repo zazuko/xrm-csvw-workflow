@@ -23,10 +23,8 @@
     "barnard59-formats": "^1.2.0",
     "barnard59-ftp": "^1.0.1",
     "barnard59-graph-store": "^1.0.1",
-    "barnard59-rdf": "^1.1.1",
-    "jsonld": "^4.0.1",
-    "rdf-ext": "^2.0.1",
-    "rdf-stream-to-dataset-stream": "^1.0.0"
+    "barnard59-rdf": "^1.2.0",
+    "rdf-ext": "^2.0.1"
   },
   "devDependencies": {
     "stricter-standard": "^0.2.0"
