@@ -7,7 +7,20 @@ This repository provides all you need to convert CSV files to RDF. It contains:
 - A pipeline that converts the input CSV to RDF
 - A default GitHub Action configuration that runs the pipeline and creates an artifact for download
 
-This is a GitHub template repository. It will not be declared as "fork" once you click on the `Use this template` button above. Simply do that and start adding your data sources and adjust the XRM mapping accordingly. See [Further reading](#further-reading) for more information about the XRM mapping language.
+This is a GitHub template repository. It will not be declared as "fork" once you click on the `Use this template` button above. Simply do that, start adding your data sources and adjust the XRM mapping accordingly:
+
+1. Create/adjust the XRM files in the `mappings` directory.
+2. Copy source CSVs to `input` directory.
+3. Execution of the run-scripts to convert your data.
+
+Make sure to commit the `input`, `mappings` and `src-gen` directories if you want to build it using GitHub Actions.
+
+See [Further reading](#further-reading) for more information about the XRM mapping language.
+
+
+## 
+
+
 
 ## Run the pipeline
 
@@ -21,11 +34,11 @@ There are additional pipelines configured in `package.json`:
 
 * `file-to-store`: Uploads the generated output file to an RDF store via SPARQL Graph Store Protocol
 * `to-store(-dev)`: Directly uploads to an RDF store (direct streaming in the pipeline) via SPARQL Graph Store Protocol
-* `fetch(-dev)`: This is a generic pipeline that can read data from FTP and SFTP shares. This does not do anything in the default configuration but can be useful if you want to fetch the data from somewhere automated.
 
 If you want to test the upload to an RDF store, a default [Apache Jena Fuseki](https://jena.apache.org/index.html) installation with a database `data` on port `3030` should work out of the box.
 
 Pipeline configuration is done via environment variables and/or adjusting default variables in the pipeline itself. If you want to pass another default, have a look at the `--variable=XYZ` samples in `package.json`. If you want to adjust it in the pipeline, open the file [pipelines/main.ttl](pipelines/main.ttl) and edit `<defaultVars> ...`.
+
 
 ## barnard59 RDF pipelines
 

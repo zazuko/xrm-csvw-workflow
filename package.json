@@ -10,8 +10,6 @@
     "file-to-store": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl --variable=ENDPOINT_URL --variable=ENDPOINT_USER --variable=ENDPOINT_PASSWORD",
     "file-to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl",
     "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl",
-    "fetch": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl --variable=SSH_HOST --variable=SSH_PORT --variable=SSH_USER --variable=SSH_PRIVATE_KEY",
-    "fetch-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fetch pipelines/fetch.ttl",
     "test": "stricter-standard"
   },
   "author": "Zazuko",
@@ -21,7 +19,6 @@
     "barnard59": "^1.1.1",
     "barnard59-csvw": "^1.0.0",
     "barnard59-formats": "^1.2.0",
-    "barnard59-ftp": "^1.0.1",
     "barnard59-graph-store": "^1.0.1",
     "barnard59-rdf": "^1.2.0",
     "rdf-ext": "^2.0.1"
