@@ -1,42 +1,43 @@
 vocabulary ex {
-    prefix "ex" "http://example.com/"
+	prefix "ex" "http://example.com/"
 }
 
 vocabulary vocab {
-    prefix "vocab" "http://example.com/vocab#"
+	prefix "vocab" "http://example.com/vocab#"
 
-    properties
-        influenceScore
-        networkScore
-        npsScore
-        customerLtv
-        sentimentScore
-        propensityScore
+	properties
+		influenceScore
+		networkScore
+		npsScore
+		customerLtv
+		sentimentScore
+		propensityScore
 }
 
 vocabulary schema {
-    prefix "schema" "http://schema.org/"
+	prefix "schema" "http://schema.org/"
 
-    classes
-        PostalAddress
-        Person
+	classes
+		PostalAddress
+		Person
 
-    properties
-        address
-        identifier
-        givenName
-        familyName
-        birthDate
-        streetAddress
-        postalCode
-        addressLocality
-        telephone
-        email
+	properties
+		address
+		identifier
+		givenName
+		familyName
+		birthDate
+		streetAddress
+		postalCode
+		addressLocality
+		telephone
+		email
 }
 
 vocabulary rdfs {
-    prefix "rdfs" "http://www.w3.org/2000/01/rdf-schema#"
+	prefix "rdfs" "http://www.w3.org/2000/01/rdf-schema#"
 
-    properties
-        seeAlso
+	properties
+		seeAlso
 }
+

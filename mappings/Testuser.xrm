@@ -1,23 +1,24 @@
 output csvw
 
 map User from Testuser {
-    subject template "http://example.com/User/{0}" with customerID;
+	subject template "http://example.com/User/{0}" with customerID;
 
-    types schema.Person
+	types
+		schema.Person
 
-    properties
-        schema.identifier from customerID;
-        vocab.influenceScore from influenceScore;
-        vocab.networkScore from networkScore;
-        vocab.npsScore from NPSScore;
-        vocab.customerLtv from customerLTV;
-        vocab.sentimentScore from sentimentScore;
-        vocab.propensityScore from propensityScore;
-        schema.givenName from name;
-        schema.familyName from lastname;
-        schema.birthDate from dob;
-        schema.address template "http://example.com/User/{0}#address" with customerID;
-        schema.telephone from TelephoneNumber;
-        schema.telephone from CellphoneNumber;
-        schema.email from email;
+	properties
+		schema.identifier from customerID;
+		vocab.influenceScore from influenceScore;
+		vocab.networkScore from networkScore;
+		vocab.npsScore from NPSScore;
+		vocab.customerLtv from customerLTV;
+		vocab.sentimentScore from sentimentScore;
+		vocab.propensityScore from propensityScore;
+		schema.givenName from name;
+		schema.familyName from lastname;
+		schema.birthDate from dob;
+		schema.address template "http://example.com/User/{0}#address" with customerID;
+		schema.telephone from TelephoneNumber;
+		schema.telephone from CellphoneNumber;
+		schema.email from email;
 }

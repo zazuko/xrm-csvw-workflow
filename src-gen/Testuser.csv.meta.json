@@ -1,6 +1,6 @@
 {
 	"@context": "http://www.w3.org/ns/csvw",
-	"url": "../input/Synthetic-Testuser.csv",
+	"url": "file:input/Synthetic-Testuser.csv",
 	"dialect": {
 		"delimiter": ","
 		,"quoteChar": "\""
