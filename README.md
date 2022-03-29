@@ -37,12 +37,12 @@ There are additional pipelines configured in `package.json`:
 
 If you want to test the upload to an RDF store, a default [Apache Jena Fuseki](https://jena.apache.org/index.html) installation with a database `data` on port `3030` should work out of the box.
 
-Pipeline configuration is done via environment variables and/or adjusting default variables in the pipeline itself. If you want to pass another default, have a look at the `--variable=XYZ` samples in `package.json`. If you want to adjust it in the pipeline, open the file [pipelines/main.ttl](pipelines/main.ttl) and edit `<defaultVars> ...`.
+Pipeline configuration is done via environment variables and/or adjusting default variables in the pipeline itself. If you want to pass another default, have a look at the `--variable=XYZ` samples in `package.json` or consult the [barnard59 documentation](https://github.com/zazuko/barnard59#passing-arguments-to-the-pipeline). If you want to adjust it in the pipeline, open the file [pipelines/main.ttl](pipelines/main.ttl) and edit `<defaultVars> ...`.
 
 
 ## barnard59 RDF pipelines
 
-This template is built on top of our [Zazuko](https://zazuko.com/) [barnard59](https://github.com/zazuko/barnard59) pipelining system. It is a fully configurable pipeline framework aimed at creating RDF data out of various data sources. Unlike many other data pipelining systems, barnard59 is configured instead of programmed. In case you need to do pre- or post-processing, you can implement additional pipeline steps written in JavaScript.
+This template is built on top of our [Zazuko](https://zazuko.com/) [barnard59](https://github.com/zazuko/barnard59) pipelining system. It is a [Node.js](https://nodejs.org) based, fully configurable pipeline framework aimed at creating RDF data out of various data sources. Unlike many other data pipelining systems, barnard59 is configured instead of programmed. In case you need to do pre- or post-processing, you can implement additional pipeline steps written in JavaScript.
 
 barnard59 is streaming and can be used to convert very large data sets with a small memory footprint.
 
