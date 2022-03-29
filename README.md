@@ -16,12 +16,6 @@ This is a GitHub template repository. It will not be declared as "fork" once you
 Make sure to commit the `input`, `mappings` and `src-gen` directories if you want to build it using GitHub Actions.
 
 See [Further reading](#further-reading) for more information about the XRM mapping language.
-
-
-## 
-
-
-
 ## Run the pipeline
 
 The default pipeline can be run with `npm start` or `npm run to-file`. It will:
