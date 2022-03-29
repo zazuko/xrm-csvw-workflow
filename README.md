@@ -11,7 +11,7 @@ This is a GitHub template repository. It will not be declared as "fork" once you
 
 1. Create/adjust the XRM files in the `mappings` directory.
 2. Copy source CSVs to `input` directory.
-3. Execution of the run-scripts to convert your data.
+3. Execute one of the run-scripts to convert your data.
 
 Make sure to commit the `input`, `mappings` and `src-gen` directories if you want to build it using GitHub Actions.
 
