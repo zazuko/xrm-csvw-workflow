@@ -1,7 +1,7 @@
 @base <http://example.org/pipeline/>.
 @prefix p: <https://pipeline.described.at/>.
 @prefix code: <https://code.described.at/>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix op: <https://barnard59.zazuko.com/operations/>.
 
 #
 # Default variables
@@ -36,10 +36,10 @@
   p:variables <defaultVars>;
   p:steps [
     p:stepList (
-      <listMappingCsvwMetaFiles>
-      <forEachMappingCsvwMetaFile>
-      <serialize>
-      <writeFile>
+      [ op:base\/glob [code:name "pattern"; code:value "mappingFilePattern"^^p:VariableName] ]
+      [ op:base\/forEach (<readMappingCsvTriples> "csvMapping") ]
+      [ op:formats\/ntriples\/serialize () ]
+      [ op:core\/fs\/createWriteStream ("outputFile"^^p:VariableName) ]
     )
   ].
 
@@ -47,10 +47,15 @@
   p:variables <defaultVars>;
   p:steps [
     p:stepList (
-      <listMappingCsvwMetaFiles>
-      <forEachMappingCsvwMetaFile>
-      <setDestinationGraph>
-      <graphStorePut>
+      [ op:base\/glob [code:name "pattern"; code:value "mappingFilePattern"^^p:VariableName] ]
+      [ op:base\/forEach (<readMappingCsvTriples> "csvMapping") ]
+      [ op:rdf\/setGraph ("destinationGraph"^^p:VariableName) ]
+      [ op:graph-store\/put
+          [code:name "endpoint"; code:value "ENDPOINT_URL"^^p:VariableName],
+          [code:name "graph";    code:value "destinationGraph"^^p:VariableName],
+          [code:name "user";     code:value "ENDPOINT_USER"^^p:VariableName],
+          [code:name "password"; code:value "ENDPOINT_PASSWORD"^^p:VariableName]
+      ]
     )
   ].
 
@@ -58,136 +63,37 @@
   p:variables <defaultVars>;
   p:steps [
     p:stepList (
-      <readFile>
-      <parseN3>
-      <setDestinationGraph>
-      <graphStorePut>
+      [ op:core\/fs\/createReadStream ("outputFile"^^p:VariableName) ]
+      [ op:formats\/n3\/parse () ]
+      [ op:rdf\/setGraph ("destinationGraph"^^p:VariableName) ]
+      [ op:graph-store\/put
+          [code:name "endpoint"; code:value "ENDPOINT_URL"^^p:VariableName],
+          [code:name "graph";    code:value "destinationGraph"^^p:VariableName],
+          [code:name "user";     code:value "ENDPOINT_USER"^^p:VariableName],
+          [code:name "password"; code:value "ENDPOINT_PASSWORD"^^p:VariableName]
+      ]
     )
   ].
 
 #
-# Steps
+# Sub-pipelines
 #
-
-<readFile> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:fs#createReadStream>
-  ];
-  code:arguments ("outputFile"^^p:VariableName).
-
-<parseN3> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-formats/n3.js#parse>
-  ].
-
-<writeFile> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:fs#createWriteStream>
-  ];
-  code:arguments ("outputFile"^^p:VariableName).
-
-<listMappingCsvwMetaFiles> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-base#glob>
-  ];
-  code:arguments[
-    code:name "pattern";
-    code:value "mappingFilePattern"^^p:VariableName
-  ].
-
-<forEachMappingCsvwMetaFile> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-base/forEach.js#default>
-  ];
-  code:arguments (<readMappingCsvTriples> "csvMapping").
 
 <readMappingCsvTriples> a p:Pipeline, p:ReadableObjectMode;
   p:steps [
     p:stepList (
-      <readCsv>
-      <parseCsv>
-      <removeCsvwTriples>
+      [ op:csvw\/fetch [code:name "csvw"; code:value "file:${csvMapping}"^^code:EcmaScriptTemplateLiteral] ]
+      [ op:formats\/csvw\/parse [code:name "metadata"; code:value <parseMetadata>] ]
+      [ op:base\/filter ([ a code:EcmaScriptModule;
+          code:link <node:barnard59-csvw/filter.js#excludeCsvwTriples>
+        ]) ]
     )
-  ].
-
-#
-# Common Subpipelines & Steps
-#
-<readCsv> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-csvw#fetch>
-  ];
-  code:arguments [
-    code:name "csvw";
-    code:value "file:${csvMapping}"^^code:EcmaScriptTemplateLiteral
-  ].
-
-<parseCsv> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-formats/csvw.js#parse>
-  ];
-  code:arguments [
-    code:name "metadata";
-    code:value <parseMetadata>
-  ].
-
-<removeCsvwTriples> a p:Step ;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-base/filter.js#default>
-  ];
-  code:arguments ([ a code:EcmaScriptModule;
-    code:link <file:../lib/isNotCsvwTriple.js#default>
-  ]).
-
-<flatten> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-base/flatten.js#default>;
-  ].
-
-<serialize> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-formats/ntriples.js#serialize>
   ].
 
 <parseMetadata> a p:Pipeline, p:ReadableObjectMode;
   p:steps [
     p:stepList (
-      <readMetadataJson>
-      <parseMetadataJson>
+      [ op:core\/fs\/createReadStream ("csvMapping"^^p:VariableName) ]
+      [ op:formats\/jsonld\/parse () ]
     )
-  ].
-
-<readMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:fs#createReadStream>
-  ];
-  code:arguments ("csvMapping"^^p:VariableName).
-
-<parseMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-formats/jsonld.js#parse>
-  ].
-
-<setDestinationGraph> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-rdf/setGraph.js#default>
-  ];
-  code:arguments ("destinationGraph"^^p:VariableName).
-
-<graphStorePut> a p:Step;
-  code:implementedBy [ a code:EcmaScriptModule;
-    code:link <node:barnard59-graph-store/put.js#default>
-  ];
-  code:arguments [
-    code:name "endpoint";
-    code:value "ENDPOINT_URL"^^p:VariableName
-  ], [
-    code:name "user";
-    code:value "ENDPOINT_USER"^^p:VariableName
-  ], [
-    code:name "password";
-    code:value "ENDPOINT_PASSWORD"^^p:VariableName
-  ], [
-    code:name "maxQuadsPerRequest";
-    code:value 10000000
   ].

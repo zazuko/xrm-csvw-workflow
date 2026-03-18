@@ -22,7 +22,7 @@ The default pipeline can be run with `npm start` or `npm run to-file`. It will:
 
 - Read the CSVW input files
 - Convert it to RDF
-- Write it into a file as N-Triples (default: `output/transformed`)
+- Write it into a file as N-Triples (default: `output/transformed.nt`)
 
 There are additional pipelines configured in `package.json`:
 
@@ -31,7 +31,7 @@ There are additional pipelines configured in `package.json`:
 
 If you want to test the upload to an RDF store, a default [Apache Jena Fuseki](https://jena.apache.org/index.html) installation with a database `data` on port `3030` should work out of the box.
 
-Pipeline configuration is done via environment variables and/or adjusting default variables in the pipeline itself. If you want to pass another default, have a look at the `--variable=XYZ` samples in `package.json` or consult the [barnard59 documentation](https://github.com/zazuko/barnard59#passing-arguments-to-the-pipeline). If you want to adjust it in the pipeline, open the file [pipelines/main.ttl](pipelines/main.ttl) and edit `<defaultVars> ...`.
+Pipeline configuration is done via environment variables and/or adjusting default variables in the pipeline itself. If you want to pass another default, have a look at the `--variable=XYZ` samples in `package.json` or consult the [barnard59 documentation](https://github.com/zazuko/barnard59). If you want to adjust it in the pipeline, open the file [pipelines/main.ttl](pipelines/main.ttl) and edit `<defaultVars> ...`.
 
 
 ## barnard59 RDF pipelines
@@ -46,6 +46,10 @@ We provide additional template repositories:
 
 * [xrm-r2rml-workflow](https://github.com/zazuko/xrm-r2rml-workflow):  A template repository for converting complete relational databases to RDF using the R2RML specification and Ontop as mapper.
 * xrm-xml-workflow: TODO
+
+## Querying the output
+
+Sample SPARQL queries for the generated data are available in [docs/QUERIES.sparqlbook](docs/QUERIES.sparqlbook). To run them directly in VS Code, install the [SPARQL Notebook](https://marketplace.visualstudio.com/items?itemName=Zazuko.sparql-notebook) extension.
 
 ## Further reading
 

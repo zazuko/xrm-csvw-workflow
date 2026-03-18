@@ -1,0 +1,80 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# XRM CSVW Workflow – Sample Queries\n\nEndpoint: `../output/transformed.nt`\n\nPrefixes used throughout:\n\n```\nPREFIX schema: <http://schema.org/>\nPREFIX vocab:  <http://example.com/vocab#>\nPREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>\n```",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## All persons with name and email",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\n\nSELECT ?person ?givenName ?familyName ?email WHERE {\n  ?person a schema:Person ;\n    schema:givenName ?givenName ;\n    schema:familyName ?familyName ;\n    schema:email ?email .\n}\nORDER BY ?familyName ?givenName",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Person with full address",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\n\nSELECT ?givenName ?familyName ?street ?postalCode ?city WHERE {\n  ?person a schema:Person ;\n    schema:givenName ?givenName ;\n    schema:familyName ?familyName ;\n    schema:address ?address .\n  ?address schema:streetAddress ?street ;\n    schema:postalCode ?postalCode ;\n    schema:addressLocality ?city .\n}\nORDER BY ?familyName",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Persons grouped by city",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\n\nSELECT ?city (COUNT(?person) AS ?count) WHERE {\n  ?person a schema:Person ;\n    schema:address ?address .\n  ?address schema:addressLocality ?city .\n}\nGROUP BY ?city\nORDER BY DESC(?count)",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Persons with Wikidata link for their city",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\nPREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?givenName ?familyName ?city ?wikidataCity WHERE {\n  ?person a schema:Person ;\n    schema:givenName ?givenName ;\n    schema:familyName ?familyName ;\n    schema:address ?address .\n  ?address schema:addressLocality ?city ;\n    rdfs:seeAlso ?wikidataCity .\n}\nORDER BY ?city",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Customer scores overview",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\nPREFIX vocab:  <http://example.com/vocab#>\n\nSELECT ?givenName ?familyName ?npsScore ?influenceScore ?sentimentScore ?propensityScore WHERE {\n  ?person a schema:Person ;\n    schema:givenName ?givenName ;\n    schema:familyName ?familyName ;\n    vocab:npsScore ?npsScore ;\n    vocab:influenceScore ?influenceScore ;\n    vocab:sentimentScore ?sentimentScore ;\n    vocab:propensityScore ?propensityScore .\n}\nORDER BY DESC(?npsScore)",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## All properties of a single person (by identifier)",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# [endpoint=../output/transformed.nt]\nPREFIX schema: <http://schema.org/>\n\nSELECT ?p ?o WHERE {\n  ?person schema:identifier \"501\" ;\n    ?p ?o .\n}",
+    "metadata": {}
+  }
+]
