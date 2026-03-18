@@ -13,43 +13,47 @@ const DIALECT_BLOCK = `dialect Comma {
   quoteChar '\\\"'
 }\n`
 
-const file = process.argv[2]
-if (!file) {
-  console.error('Usage: npm run csv2xrm -- <csv-file>')
+const files = process.argv.slice(2)
+if (!files.length) {
+  console.error('Usage: npm run csv2xrm -- <csv-file> [csv-file ...]')
   process.exit(1)
 }
 
-const input = createReadStream(file)
-input.on('error', err => { console.error(err.message); process.exit(1) })
+async function readHeader(file) {
+  return new Promise((resolve, reject) => {
+    const input = createReadStream(file)
+    input.on('error', reject)
+    const rl = createInterface({ input, terminal: false })
+    rl.once('line', line => { rl.close(); resolve(line) })
+  })
+}
 
-const rl = createInterface({ input, terminal: false })
-rl.once('line', async line => {
-  rl.close()
+const blocks = await Promise.all(files.map(async file => {
+  const line = await readHeader(file)
+  const headers = parseCSVLine(line, detectDelimiter(line))
+  return createBlock(basename(file, extname(file)), headers)
+}))
 
-  const delimiter = detectDelimiter(line)
-  const headers = parseCSVLine(line, delimiter)
-  const sourceName = basename(file, extname(file))
-  const block = createBlock(sourceName, headers)
+const content = blocks.join('\n')
 
-  if (existsSync(SOURCES_FILE)) {
-    const answer = await ask(
-      `${SOURCES_FILE} already exists. (a)ppend / (o)verwrite / (s)kip? [a] `
-    )
-    const choice = (answer.trim().toLowerCase() || 'a')[0]
-    if (choice === 's') {
-      console.log('Skipped.')
-    } else if (choice === 'o') {
-      await writeFile(SOURCES_FILE, DIALECT_BLOCK + '\n' + block)
-      console.log(`Overwrote ${SOURCES_FILE}`)
-    } else {
-      await appendFile(SOURCES_FILE, '\n' + block)
-      console.log(`Appended to ${SOURCES_FILE}`)
-    }
+if (existsSync(SOURCES_FILE)) {
+  const answer = await ask(
+    `${SOURCES_FILE} already exists. (a)ppend / (o)verwrite / (s)kip? [a] `
+  )
+  const choice = (answer.trim().toLowerCase() || 'a')[0]
+  if (choice === 's') {
+    console.log('Skipped.')
+  } else if (choice === 'o') {
+    await writeFile(SOURCES_FILE, DIALECT_BLOCK + '\n' + content)
+    console.log(`Overwrote ${SOURCES_FILE}`)
   } else {
-    await writeFile(SOURCES_FILE, DIALECT_BLOCK + '\n' + block)
-    console.log(`Created ${SOURCES_FILE}`)
+    await appendFile(SOURCES_FILE, '\n' + content)
+    console.log(`Appended to ${SOURCES_FILE}`)
   }
-})
+} else {
+  await writeFile(SOURCES_FILE, DIALECT_BLOCK + '\n' + content)
+  console.log(`Created ${SOURCES_FILE}`)
+}
 
 function detectDelimiter(line) {
   const candidates = [',', ';', '\t', '|', '~']

@@ -9,9 +9,14 @@ This repository provides all you need to convert CSV files to RDF. It contains:
 
 This is a GitHub template repository. It will not be declared as "fork" once you click on the `Use this template` button above. Simply do that, start adding your data sources and adjust the XRM mapping accordingly:
 
-1. Create/adjust the XRM files in the `mappings` directory.
-2. Copy source CSVs to `input` directory.
-3. Execute one of the run-scripts to convert your data.
+1. Add your CSV files to the `input` directory.
+2. Generate a `logical-source` block for each CSV by running:
+   ```sh
+   npm run csv2xrm -- input/yourfile.csv input/another.csv
+   ```
+   This reads the CSV header of each file, auto-detects the delimiter, and appends one `logical-source` block per file to `mappings/Sources.xrm`. You will be prompted before overwriting an existing file.
+3. Adjust the generated block and create/adjust the XRM mapping files in `mappings/`.
+4. Execute one of the run-scripts to convert your data.
 
 Make sure to commit the `input`, `mappings` and `src-gen` directories if you want to build it using GitHub Actions.
 
