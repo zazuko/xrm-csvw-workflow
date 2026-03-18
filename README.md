@@ -49,8 +49,7 @@ barnard59 is streaming and can be used to convert very large data sets with a sm
 
 We provide additional template repositories:
 
-* [xrm-r2rml-workflow](https://github.com/zazuko/xrm-r2rml-workflow):  A template repository for converting complete relational databases to RDF using the R2RML specification and Ontop as mapper.
-* xrm-xml-workflow: TODO
+* [xrm-csv-workflow](https://github.com/zazuko/xrm-csv-workflow): A template for converting CSV files or relational databases to RDF using DuckDB and Ontop VKG. Better suited for large CSV files — this repository is a good fit for smaller, self-contained projects that only need Node.js.
 
 ## Querying the output
 
