@@ -47,6 +47,10 @@ We provide additional template repositories:
 * [xrm-r2rml-workflow](https://github.com/zazuko/xrm-r2rml-workflow):  A template repository for converting complete relational databases to RDF using the R2RML specification and Ontop as mapper.
 * xrm-xml-workflow: TODO
 
+## Querying the output
+
+Sample SPARQL queries for the generated data are available in [docs/QUERIES.sparqlbook](docs/QUERIES.sparqlbook). To run them directly in VS Code, install the [SPARQL Notebook](https://marketplace.visualstudio.com/items?itemName=Zazuko.sparql-notebook) extension.
+
 ## Further reading
 
 * [Expressive RDF Mapping Language (XRM)](https://zazuko.com/products/expressive-rdf-mapper/) and the [documentation](https://github.com/zazuko/expressive-rdf-mapper) for details about the domain-specific language (DSL).
