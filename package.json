@@ -16,7 +16,7 @@
   "license": "MIT",
   "bugs": {},
   "dependencies": {
-    "barnard59": "^5.1.2",
+    "barnard59": "^5.1.4",
     "barnard59-csvw": "^2.2.3",
     "barnard59-formats": "^4.0.1",
     "barnard59-graph-store": "^6.0.3",
